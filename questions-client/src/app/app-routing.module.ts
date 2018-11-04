@@ -4,6 +4,8 @@ import { ThemesComponent } from './router-components/themes/themes.component';
 import { QuestionsContainerComponent } from './router-components/questions-container/questions-container.component';
 import { LoginComponent } from './router-components/login/login.component';
 import { RegisterComponent } from './router-components/register/register.component';
+import { LoginGuard } from './__guards/login.guards';
+import { CanActivate } from '@angular/router/src/utils/preactivation';
 
 const routes: Routes = [
   { path: '',
@@ -20,11 +22,13 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
+    canActivate: [LoginGuard]
   },
   {
     path: 'register',
-    component: RegisterComponent
+    component: RegisterComponent,
+    canActivate: [LoginGuard]
   }
 ];
 

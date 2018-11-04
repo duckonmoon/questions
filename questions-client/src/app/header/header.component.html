@@ -18,7 +18,7 @@
       <a routerLink="/register" role="button" class="btn btn-outline-info my-2 my-sm-0">Registration</a>
     </form>
     <form *ngIf="isActive" class="form-inline my-2 my-lg-0" style="margin-left: 10px">
-      <button class="btn btn-outline-info my-2 my-sm-0">Log Out</button>
+      <button (click)="logOut()" class="btn btn-outline-info my-2 my-sm-0">Log Out</button>
     </form>
   </div>
 </nav>

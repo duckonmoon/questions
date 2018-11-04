@@ -17,6 +17,7 @@ export class LoginService {
                 result => {
                     localStorage.setItem('currentUser', result['access_token']);
                     this.auth.next();
+                    location.reload(true);
                 },
                 (e) => console.log(e)
             )
@@ -25,5 +26,6 @@ export class LoginService {
     logout() {
         // remove user from local storage to log user out
         localStorage.removeItem('currentUser');
+        this.auth.next();
     }
 }

@@ -21,6 +21,7 @@ import { RegistrationService } from './router-components/register/registration.s
 import { LoginService } from './router-components/login/login.service';
 import { JwtInterceptor } from './__helper/jwt.interceptor';
 import { ErrorInterceptor } from './__helper/error.interceptor';
+import { LoginGuard } from './__guards/login.guards';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { ErrorInterceptor } from './__helper/error.interceptor';
     ThemeProvider,
     QuestionsProvider,
     AuthGuard,
+    LoginGuard,
     RegistrationService,
     LoginService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
