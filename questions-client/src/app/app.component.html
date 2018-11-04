@@ -1,0 +1,16 @@
+<app-header></app-header>
+
+<div *ngIf="isNotThemeView" style="text-align: center;
+ margin: 10px;">
+    <a class="btn btn-primary" data-toggle="collapse" href="#themeCollapser" role="button" aria-expanded="false" aria-controls="themeCollapser">
+        Show All Themes
+    </a>
+    <div style="margin: 10px" class="collapse" id="themeCollapser">
+        <a role="button" routerLink="/theme/{{theme.id}}" class="btn btn-dark" *ngFor="let theme of themes" style="margin: 5px">{{theme.title}}</a>
+    </div>
+</div>
+
+<router-outlet></router-outlet>
+
+
+<app-footer></app-footer>
