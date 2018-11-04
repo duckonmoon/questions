@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -18,6 +18,9 @@ import { LoginComponent } from './router-components/login/login.component';
 import { RegisterComponent } from './router-components/register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegistrationService } from './router-components/register/registration.service';
+import { LoginService } from './router-components/login/login.service';
+import { JwtInterceptor } from './__helper/jwt.interceptor';
+import { ErrorInterceptor } from './__helper/error.interceptor';
 
 @NgModule({
   declarations: [
@@ -43,7 +46,10 @@ import { RegistrationService } from './router-components/register/registration.s
     ThemeProvider,
     QuestionsProvider,
     AuthGuard,
-    RegistrationService
+    RegistrationService,
+    LoginService,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })

@@ -23,11 +23,3 @@ export class RegistrationService {
         return this.http.post('/api/Account/Register', data, {headers});
     }
 }
-/*
-{
-	"Email": "r@r.com",
-	"Nickname" : "Wow",
-	"Password" : "Vk123456!",
-	"ConfirmPassword" : "Vk123456!"
-}
-*/
