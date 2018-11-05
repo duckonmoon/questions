@@ -1,13 +1,17 @@
 <div style="margin: 30px 20px 0 20px">
   <div *ngIf="theme">
-      <div style="text-align:center;">
-          <img [src]="theme.image" alt="Card image cap" height="160px">
-          <div style="margin: 10px 0 0 0">
-            <h1>{{theme.title}}</h1>
-            <p style="margin: 10px 0 0 0" class="card-text">{{theme.description}}</p>
-          </div>
+    <div style="text-align:center;">
+      <img [src]="theme.image" alt="Card image cap" height="160px">
+      <div style="margin: 10px 0 0 0">
+        <h1>{{theme.title}}</h1>
+        <p style="margin: 10px 0 0 0" class="card-text">{{theme.description}}</p>
       </div>
+    </div>
   </div>
   <h3> Questions : </h3>
   <app-question-container *ngFor="let question of questions" [question]=question></app-question-container>
+  <a [routerLink]="['/theme', themeId, 'submitquestion']" *ngIf="isActive" class="btn btn-success" role="button" style="position:fixed; top:80px; right: 30px;">
+    <span style="color: azure">Ask a question </span>
+  </a>
+  <p *ngIf="!isActive" style="margin-top: 20px">Want to ask a question:) Pls, <a routerLink="/login">Login</a> or <a routerLink="/register">Register.</a> </p>
 </div>

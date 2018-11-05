@@ -15,7 +15,7 @@ export class LoginService {
                 `grant_type=password&username=${userName}&password=${password}`
             ).subscribe(
                 result => {
-                    localStorage.setItem('currentUser', result['access_token']);
+                    localStorage.setItem('currentUser', JSON.stringify(result));
                     this.auth.next();
                     location.reload(true);
                 },

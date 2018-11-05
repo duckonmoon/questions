@@ -10,6 +10,7 @@ import { LoginService } from '../router-components/login/login.service';
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   isActiveSub: Subscription;
+  userName: string = '';
   isActive: boolean;
 
   constructor(private auth: AuthGuard, private service: LoginService) { 
@@ -18,8 +19,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.isActiveSub = this.auth.eventTosubscribe().subscribe((next) => {
       this.isActive = next;
+      this.userName = this.auth.getUserName();
     })
     this.isActive = this.auth.isActive();
+    this.userName = this.auth.getUserName();
   }
 
   ngOnDestroy(){

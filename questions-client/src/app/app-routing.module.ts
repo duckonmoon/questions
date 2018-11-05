@@ -6,6 +6,8 @@ import { LoginComponent } from './router-components/login/login.component';
 import { RegisterComponent } from './router-components/register/register.component';
 import { LoginGuard } from './__guards/login.guards';
 import { CanActivate } from '@angular/router/src/utils/preactivation';
+import { AskQuestionFormComponent } from './router-components/ask-question-form/ask-question-form.component';
+import { AuthGuard } from './__guards/auth.guards';
 
 const routes: Routes = [
   { path: '',
@@ -29,6 +31,11 @@ const routes: Routes = [
     path: 'register',
     component: RegisterComponent,
     canActivate: [LoginGuard]
+  },
+  {
+    path: 'theme/:themeId/submitquestion',
+    component: AskQuestionFormComponent,
+    canActivate: [AuthGuard]
   }
 ];
 

@@ -22,6 +22,8 @@ import { LoginService } from './router-components/login/login.service';
 import { JwtInterceptor } from './__helper/jwt.interceptor';
 import { ErrorInterceptor } from './__helper/error.interceptor';
 import { LoginGuard } from './__guards/login.guards';
+import { AskQuestionFormComponent } from './router-components/ask-question-form/ask-question-form.component';
+import { AskQuestionService } from './router-components/ask-question-form/ask-question-service';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,8 @@ import { LoginGuard } from './__guards/login.guards';
     QuestionsContainerComponent,
     QuestionContainerComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    AskQuestionFormComponent
   ],
   imports: [
     NgbModule.forRoot(),
@@ -50,6 +53,7 @@ import { LoginGuard } from './__guards/login.guards';
     LoginGuard,
     RegistrationService,
     LoginService,
+    AskQuestionService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
