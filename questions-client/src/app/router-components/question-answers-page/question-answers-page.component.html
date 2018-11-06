@@ -15,12 +15,21 @@
     </blockquote>
   </div>
 </div>
-<div style="margin: 10px 0 10px 30px" *ngIf="question">
+<div style="margin: 10px 0 60px 30px" *ngIf="question">
   <h4>Answers:</h4>
   <div style="margin: 0 0 0 30px">
     <app-answer *ngFor="let answer of question.answers" [answer]="answer"></app-answer>
   </div>
+  <div *ngIf="success" class="alert alert-success" role="alert">
+    Question Created! You can see you question <a [routerLink]="['/theme', themeId]">here</a>
+  </div>
+  <div *ngIf="success" class="alert alert-success" role="alert">
+   Success Answer Created! 
+  </div>
+  <div *ngIf="error" class="alert alert-danger" role="alert">
+    {{error}}
+  </div>
   <button *ngIf="isActive && !isSubmissionFormActive" (click)="writeStart()" type="button" style="float: right; margin-right: 30px;"class="btn btn-success">Write your answer:)</button>
-  <app-submit-answer (submitAnswer)="submit($event)" *ngIf="isSubmissionFormActive"></app-submit-answer>
+  <app-submit-answer (submitAnswer)="submit($event)" *ngIf="isActive && isSubmissionFormActive"></app-submit-answer>
   <p *ngIf="!isActive" style="margin-top: 20px">Want to ask a question:) Pls, <a routerLink="/login">Login</a> or <a routerLink="/register">Register.</a> </p>
 </div>

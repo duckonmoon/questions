@@ -17,12 +17,6 @@ namespace question_server.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: api/Questions
-        public IQueryable<Question> GetQuestions()
-        {
-            return db.Questions;
-        }
-
         // GET: api/Questions/5
         [ResponseType(typeof(FullQuestionDTO))]
         public async Task<IHttpActionResult> GetQuestion(int id)

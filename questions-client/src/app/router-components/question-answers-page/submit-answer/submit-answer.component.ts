@@ -10,12 +10,15 @@ export class SubmitAnswerComponent implements OnInit {
   @Output()
   submitAnswer = new EventEmitter();
 
+  title: string;
+  description: string;
+
   constructor() { }
 
   ngOnInit() {
   }
 
-  submit(){
-    this.submitAnswer.emit({i : 10})
+  submit() {
+    this.submitAnswer.emit({ title: this.title, description: this.description });
   }
 }

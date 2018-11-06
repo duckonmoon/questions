@@ -1,3 +1,8 @@
-<p (click)="submit()">
-  submit-answer works!
-</p>
+<div style="padding: 8px 12px 10px 8px; border: 1px solid #ccc!important; border-radius: 16px;">
+  <label for="title">Answer Brief Description:</label>
+  <p style="font-size:8px">People love to read everything briefly to know if answer is usefull so this field is required</p>
+  <input [(ngModel)]="title" type="text" class="form-control" rows="5" id="title" />
+  <label for="comment">Answer:</label>
+  <textarea [(ngModel)]="description" class="form-control" rows="3" id="comment"></textarea>
+  <button (click)="submit()" class="btn btn-info" style="margin: 20px 10px 0 10px; float: right;">Submit</button>
+</div>
