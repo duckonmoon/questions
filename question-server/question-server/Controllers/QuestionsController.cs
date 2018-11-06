@@ -24,7 +24,7 @@ namespace question_server.Controllers
         }
 
         // GET: api/Questions/5
-        [ResponseType(typeof(Question))]
+        [ResponseType(typeof(FullQuestionDTO))]
         public async Task<IHttpActionResult> GetQuestion(int id)
         {
             Question question = await db.Questions.FindAsync(id);
@@ -33,7 +33,29 @@ namespace question_server.Controllers
                 return NotFound();
             }
 
-            return Ok(question);
+            var questionDTO = new FullQuestionDTO()
+            {
+                id = question.Id,
+                title = question.Title,
+                description = question.Description,
+                createdBy = question.CreatedBy.UserName,
+                theme = new ThemeDTO()
+                {
+                    id = question.Theme.Id,
+                    title = question.Theme.Title,
+                    description = question.Theme.Description,
+                    image = question.Theme.Image
+                },
+                answers = question.Answers.Select(dbanswer => new AnswerDTO()
+                {
+                    id = dbanswer.Id,
+                    title = dbanswer.Title,
+                    description = dbanswer.Description,
+                    createdBy = dbanswer.CreatedBy.UserName
+
+                }).ToList()
+            };
+            return Ok(questionDTO);
         }
 
         // POST: api/Questions

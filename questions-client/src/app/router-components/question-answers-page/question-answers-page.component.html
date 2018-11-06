@@ -1,0 +1,26 @@
+<div *ngIf="question" style="text-align:center; margin-bottom: 20px;">
+  <h1>{{question.theme.title}}</h1>
+</div>
+
+<div *ngIf="question" class="card" style="margin: 10px">
+  <div class="card-header">
+    <h2>
+      {{question.title}}
+    </h2>
+  </div>
+  <div class="card-body">
+    <blockquote class="blockquote mb-0">
+      <p>{{question.description}}</p>
+      <footer class="blockquote-footer">Author <cite title="Source Title">{{question.createdBy}}</cite></footer>
+    </blockquote>
+  </div>
+</div>
+<div style="margin: 10px 0 10px 30px" *ngIf="question">
+  <h4>Answers:</h4>
+  <div style="margin: 0 0 0 30px">
+    <app-answer *ngFor="let answer of question.answers" [answer]="answer"></app-answer>
+  </div>
+  <button *ngIf="isActive && !isSubmissionFormActive" (click)="writeStart()" type="button" style="float: right; margin-right: 30px;"class="btn btn-success">Write your answer:)</button>
+  <app-submit-answer (submitAnswer)="submit($event)" *ngIf="isSubmissionFormActive"></app-submit-answer>
+  <p *ngIf="!isActive" style="margin-top: 20px">Want to ask a question:) Pls, <a routerLink="/login">Login</a> or <a routerLink="/register">Register.</a> </p>
+</div>

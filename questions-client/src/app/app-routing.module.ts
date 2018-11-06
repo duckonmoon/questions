@@ -8,6 +8,7 @@ import { LoginGuard } from './__guards/login.guards';
 import { CanActivate } from '@angular/router/src/utils/preactivation';
 import { AskQuestionFormComponent } from './router-components/ask-question-form/ask-question-form.component';
 import { AuthGuard } from './__guards/auth.guards';
+import { QuestionAnswersPageComponent } from './router-components/question-answers-page/question-answers-page.component';
 
 const routes: Routes = [
   { path: '',
@@ -17,6 +18,10 @@ const routes: Routes = [
   {
     path: 'theme/:themeId',
     component: QuestionsContainerComponent
+  },
+  {
+    path: 'theme/:themeId/question/:questionId',
+    component: QuestionAnswersPageComponent
   },
   {
     path: 'themes',

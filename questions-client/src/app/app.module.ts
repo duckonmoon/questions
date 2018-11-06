@@ -24,6 +24,10 @@ import { ErrorInterceptor } from './__helper/error.interceptor';
 import { LoginGuard } from './__guards/login.guards';
 import { AskQuestionFormComponent } from './router-components/ask-question-form/ask-question-form.component';
 import { AskQuestionService } from './router-components/ask-question-form/ask-question-service';
+import { QuestionAnswersPageComponent } from './router-components/question-answers-page/question-answers-page.component';
+import { FullQuestionService } from './router-components/question-answers-page/question.answer.service';
+import { AnswerComponent } from './router-components/question-answers-page/answer/answer.component';
+import { SubmitAnswerComponent } from './router-components/question-answers-page/submit-answer/submit-answer.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +40,10 @@ import { AskQuestionService } from './router-components/ask-question-form/ask-qu
     QuestionContainerComponent,
     LoginComponent,
     RegisterComponent,
-    AskQuestionFormComponent
+    AskQuestionFormComponent,
+    QuestionAnswersPageComponent,
+    AnswerComponent,
+    SubmitAnswerComponent
   ],
   imports: [
     NgbModule.forRoot(),
@@ -54,6 +61,7 @@ import { AskQuestionService } from './router-components/ask-question-form/ask-qu
     RegistrationService,
     LoginService,
     AskQuestionService,
+    FullQuestionService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],

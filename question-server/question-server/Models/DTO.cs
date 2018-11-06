@@ -20,12 +20,37 @@ namespace question_server.Models
         public int themeId { get; set; }
     }
 
+    public class AnswerInputDTO
+    {
+        public string title { get; set; }
+        public string description { get; set; }
+        public int questionId { get; set; }
+    }
+
     public class QuestionOutputDTO
     {
         public int id { get; set; }
         public string title { get; set; }
         public string description { get; set; }
         public int themeId { get; set; }
+        public string createdBy { get; set; }
+    }
+
+    public class FullQuestionDTO
+    {
+        public int id { get; set; }
+        public string title { get; set; }
+        public string description { get; set; }
+        public ThemeDTO theme { get; set; }
+        public string createdBy { get; set; }
+        public List<AnswerDTO> answers { get; set; }
+    }
+
+    public class AnswerDTO
+    {
+        public int id { get; set; }
+        public string title { get; set; }
+        public string description { get; set; }
         public string createdBy { get; set; }
     }
 
