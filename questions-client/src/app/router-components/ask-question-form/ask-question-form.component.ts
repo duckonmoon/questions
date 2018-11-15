@@ -3,6 +3,8 @@ import { ThemeProvider } from 'src/app/theme-service';
 import { Theme } from 'src/app/model/theme';
 import { ActivatedRoute } from '@angular/router';
 import { AskQuestionService } from './ask-question-service';
+import { AuthGuard } from 'src/app/__guards/auth.guards';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-ask-question-form',
@@ -21,8 +23,13 @@ export class AskQuestionFormComponent implements OnInit, OnDestroy {
 
   title: string;
   description: string;
+  private isActiveSub: Subscription;
 
-  constructor(private provider: ThemeProvider, private route: ActivatedRoute, private service: AskQuestionService) { }
+  constructor(private provider: ThemeProvider,
+    private route: ActivatedRoute,
+    private service: AskQuestionService,
+    private auth: AuthGuard
+  ) { }
 
   ngOnInit() {
     this.routeSub = this.route.params.subscribe((params) => {
@@ -31,17 +38,17 @@ export class AskQuestionFormComponent implements OnInit, OnDestroy {
     this.provider.getJSON().subscribe((i) => {
       this.themes = i;
       this.theme = this.themes.find((i) => i.id === this.themeId)
-    })
-
+    });
+    this.isActiveSub = this.auth.eventTosubscribe().subscribe((i) => window.location.reload());
   }
 
   ngOnDestroy() {
     this.routeSub.unsubscribe();
+    this.isActiveSub.unsubscribe();
   }
 
   submit() {
-    this.service.postQuestion(this.title,this.description,this.themeId).subscribe((i)=> {
-      console.log(i);
+    this.service.postQuestion(this.title, this.description, this.themeId).subscribe((i) => {
       this.success = true;
       this.fail = false;
     }, (e) => {
